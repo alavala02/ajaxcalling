@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    </head>
+
+    <body>
+    <div class="container mt-3">
+      <button class="btn btn-success" style="margin-left: 1000px;" onclick="myfun()">get users</button> 
+        <table class="table table-striped mt-2">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>email</th>
+                </tr>
+            </thead>
+            <tbody id="table">
+
+            </tbody>
+        </table>
+    </div>
+    </body>
+
+
+    <script>
+            function myfun(){
+            var http=new XMLHttpRequest();
+
+            http.open("GET","https://jsonplaceholder.typicode.com/users");
+
+            http.responseType="json";
+
+            http.send();
+
+            http.onload=function(){
+                var res=http.response;
+                var tbody="";
+            res.forEach(function(val,ind) {
+                tbody+="<tr><td><a href=card1.html?id="+val.id+">"+val.id+"</a></td><td>"+val.name+"</td><td>"+val.email+"</td></tr>"
+            });
+            document.getElementById("table").innerHTML=tbody
+        }
+        http.onerror=function(){
+            alert("loadding error")
+        };
+        };
+    </script>
+</html>
