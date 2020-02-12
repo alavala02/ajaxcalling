@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    </head>
+    <body onload="myfun()">
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>UserName</th>
+                    <th>E-mail</th>
+                </tr>
+            </thead>
+
+            <tbody id="table">
+
+            </tbody>
+        </table>
+    </div>
+    </body>
+
+    <script>
+        function myfun(){
+        $.ajax({
+            "method":"GET",
+            "url":"https://jsonplaceholder.typicode.com/users",
+            success:function(res){
+                var tbody=""
+                $.each(res,function(val,ind) {
+                tbody+="<tr><td><a href=card1.html?id="+val.id+">"+val.id+"</a></td><td>"+val.name+"</td><td>"+val.username+"</td><td>"+val.email+"</td></tr>";
+            });
+            document.getElementById("table").innerHTML=tbody
+        }
+        })
+        }
+
+    </script>
+</html>
